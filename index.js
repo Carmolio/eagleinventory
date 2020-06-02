@@ -1,6 +1,6 @@
 
 function cleanData(element) {
-    return element['Item Name'].charAt(0) == "R" || "S" ;
+    return element['Item Name'].charAt(0) == "R" || element['Item Name'].charAt(0) ==  "S" ;
   }
 
 
