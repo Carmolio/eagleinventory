@@ -6,7 +6,14 @@ var manufacturerSelected
 var originalData
 var uniqueManufacturers
 var uniqueAttributes
+var uniqueSizeA
+var uniqueSizeB
+var uniqueSizeC
 
+/*** function to split a tyre size into smaller component sizes  
+ * Size: "235/65R18" becomes and array ['235','65','18']
+ * 
+ * */
 function splitSize(sizeString){
 
 var str = sizeString;
@@ -55,11 +62,7 @@ Size: "235/65R18"
  * 
  */
 
-
-
-
-
-console.log(splitSize("205/55ZR16"))
+//console.log(splitSize("205/55ZR16"))
 
 function render(renderData){
 
@@ -79,6 +82,13 @@ function render(renderData){
     
          uniqueManufacturers = d3.map(renderData, function(d){return d['Manufacturer'];}).keys()
          uniqueAttributes = d3.map(renderData, function(d){return d['Attribute'];}).keys()
+         uniqueSizeA = d3.map(renderData, function(d){return d['sizeA'];}).keys()
+         console.log(uniqueSizeA)
+         uniqueSizeB = d3.map(renderData, function(d){return d['sizeB'];}).keys()
+         console.log(uniqueSizeB)
+         uniqueSizeC = d3.map(renderData, function(d){return d['sizeC'];}).keys()
+         console.log(uniqueSizeC)
+
     
         d3.select("#selectManufacturer")
          .html("")
@@ -100,6 +110,36 @@ function render(renderData){
         .text(function (d) { return d; }) // text showed in the menu
         .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
+       d3.select("#selectSizeA")
+        .html("")
+       d3.select("#selectSizeA")
+       .selectAll('myOptions')
+       .data(uniqueSizeA)
+       .enter()
+       .append('option')
+       .text(function (d) { return d; }) // text showed in the menu
+       .attr("value", function (d) { return d; }) // corresponding value returned by the button
+   
+       d3.select("#selectSizeB")
+       .html("")
+       d3.select("#selectSizeB")
+       .selectAll('myOptions')
+       .data(uniqueSizeB)
+       .enter()
+       .append('option')
+       .text(function (d) { return d; }) // text showed in the menu
+       .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+       d3.select("#selectSizeC")
+       .html("")
+       d3.select("#selectSizeC")
+       .selectAll('myOptions')
+       .data(uniqueSizeC)
+       .enter()
+       .append('option')
+       .text(function (d) { return d; }) // text showed in the menu
+       .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
 
 
 }
@@ -112,22 +152,20 @@ d3.csv("eagleinventory.csv").then(function(data) {
 
      //console.log(data[0]['Item Number'])
 
-
-
     var data = data.filter(cleanData);
 
     data.forEach((element) => {
-        console.log(element)
-        console.log(element.Size)
+       // console.log(element)
+       // console.log(element.Size)
          let splitSizeArray = splitSize(element.Size)
          
          element.sizeA = splitSizeArray[0]
          element.sizeB = splitSizeArray[1]
          element.sizeC = splitSizeArray[2]
 
-
-
     });
+
+   // console.log(data)
 
     //append splitstring values to each data element
     // obj.key3 = "value3";
@@ -154,6 +192,28 @@ d3.csv("eagleinventory.csv").then(function(data) {
     console.log(selectedOption)
     updateAttribute(selectedOption)
     })
+
+    d3.select("#selectSizeA").on("change", function (d) {
+        // recover the option that has been chosen
+        var selectedOption = d3.select(this).property("value")
+        // run the updateChart function with this selected option
+        console.log(selectedOption)
+        updateSizeA(selectedOption)
+        })
+    d3.select("#selectSizeB").on("change", function (d) {
+            // recover the option that has been chosen
+            var selectedOption = d3.select(this).property("value")
+            // run the updateChart function with this selected option
+            console.log(selectedOption)
+            updateSizeB(selectedOption)
+            })
+     d3.select("#selectSizeC").on("change", function (d) {
+                // recover the option that has been chosen
+                var selectedOption = d3.select(this).property("value")
+                // run the updateChart function with this selected option
+                console.log(selectedOption)
+                updateSizeC(selectedOption)
+                })    
 
     var button = d3.select("#reset");
 
@@ -182,21 +242,13 @@ button.on("click", function() {
 });
 
 
-
-
 });
 
-
-function updateManufacturer(selected) {
-
+function updateSizeA(selected) {
 
     var tbody = d3.select("tbody");
-
-
-    var dataFilter = filteredData.filter(ob => ob['Manufacturer'] === selected)
+    var dataFilter = filteredData.filter(ob => ob['sizeA'] === selected)
     tbody.selectAll("tr").remove()
-
-
 
     filteredData.forEach((element) => {
         var row = tbody.append("tr");
@@ -210,6 +262,71 @@ function updateManufacturer(selected) {
     filteredData = dataFilter
     render(filteredData)
 
+}
+
+function updateSizeB(selected) {
+    
+    console.log(selected)
+    var tbody = d3.select("tbody");
+    console.log(filteredData)
+    var dataFilter = filteredData.filter(ob => ob['sizeB'] === selected)
+    tbody.selectAll("tr").remove()
+
+    console.log(dataFilter)
+
+    dataFilter.forEach((element) => {
+        var row = tbody.append("tr");
+        Object.entries(element).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+        });
+
+    });
+    
+    //console.log(dataFilter)
+    render(dataFilter)
+
+}
+
+function updateSizeC(selected) {
+
+    var tbody = d3.select("tbody");
+    var dataFilter = filteredData.filter(ob => ob['sizeC'] === selected)
+    tbody.selectAll("tr").remove()
+
+    filteredData.forEach((element) => {
+        var row = tbody.append("tr");
+        Object.entries(element).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+        });
+
+    });
+    
+    filteredData = dataFilter
+    render(filteredData)
+
+}
+
+
+
+function updateManufacturer(selected) {
+
+    var tbody = d3.select("tbody");
+    var dataFilter = filteredData.filter(ob => ob['Manufacturer'] === selected)
+    tbody.selectAll("tr").remove()
+
+    filteredData.forEach((element) => {
+        var row = tbody.append("tr");
+        Object.entries(element).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+        });
+
+    });
+    
+    filteredData = dataFilter
+    render(filteredData)
 
 }
 
