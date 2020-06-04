@@ -3,7 +3,7 @@ function cleanData(element) {
     return element['Item Name'].charAt(0) == "R" || element['Item Name'].charAt(0) ==  "S" ;
   }
 
-
+var currentTable
 
 d3.csv("eagleinventory.csv").then(function(data) {
    // for (var i = 0; i < data.length; i++) {
@@ -18,7 +18,7 @@ d3.csv("eagleinventory.csv").then(function(data) {
 var data = data.filter(cleanData);
 var tbody = d3.select("tbody");
 // YOUR CODE HERE!
-var currentTable = data
+ currentTable = data
 
 data.forEach((tyre) => {
     var row = tbody.append("tr");
@@ -101,6 +101,7 @@ function updateManufacturer(selected) {
     // Create new data with the selection?
     // var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
   //  console.log(selected)
+
     var dataFilter = currentTable.filter(ob => ob['Manufacturer'] === selected)
     tbody.selectAll("tr").remove()
     //tbody.selectAll("table").remove()
