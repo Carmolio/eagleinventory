@@ -9,11 +9,57 @@ var uniqueAttributes
 
 function splitSize(sizeString){
 
-    
+var str = sizeString;
+var res = str.split("/");
+if(res[1]){
+    var res2 = res[1].split("R")}
+else {
+    res2 = sizeString
+}
+if (res[0]) { 
+sizeA = res[0]
+}
+else{
+sizeA = "NA"}
+//console.log(sizeA)
+if (res2[0]){
+sizeB = res2[0]
+}
+else {
+    sizeB = "NA"
+}
+//console.log(sizeB)
+if(res2[1]){
+sizeC = res2[1]}
+else {
+    sizeC = "NA"
+}
+//console.log(sizeC)
+
+result = [sizeA, sizeB, sizeC]
+return result
 
 }
 
 
+/***
+ * Attribute: "SL"
+Department Name: "AUTO TIRES"
+Item Description: "SUPERMAX TM-1"
+Item Name: "R20B-15"
+Item Number: "1017"
+Manufacturer: "SUPERMAX"
+Regular Price: "60.768"
+Size: "235/65R18"
+ * 
+ * 
+ */
+
+
+
+
+
+console.log(splitSize("205/55ZR16"))
 
 function render(renderData){
 
@@ -21,7 +67,7 @@ function render(renderData){
 
     tbody.selectAll("tr").remove()
 
-    console.log(renderData)
+    //console.log(renderData)
 
     renderData.forEach((tyre) => {
         var row = tbody.append("tr");
@@ -68,10 +114,24 @@ d3.csv("eagleinventory.csv").then(function(data) {
 
 
 
-     
-     
-
     var data = data.filter(cleanData);
+
+    data.forEach((element) => {
+        console.log(element)
+        console.log(element.Size)
+         let splitSizeArray = splitSize(element.Size)
+         
+         element.sizeA = splitSizeArray[0]
+         element.sizeB = splitSizeArray[1]
+         element.sizeC = splitSizeArray[2]
+
+
+
+    });
+
+    //append splitstring values to each data element
+    // obj.key3 = "value3";
+
     originalData = data
     var tbody = d3.select("tbody");
 // YOUR CODE HERE!
