@@ -270,13 +270,27 @@ button.on("click", function() {
    // console.log("Hi, a button was clicked!");
    // console.log(d3.event.target);
     tbody.selectAll("tr").remove()
+
     originalData.forEach((element) => {
         var row = tbody.append("tr");
         Object.entries(element).forEach(([key, value]) => {
             var cell = row.append("td");
             cell.text(value);
         });
+        row.append('input').attr('type','checkbox')
     });
+    
+});
+
+
+
+
+
+var button2 = d3.select("#checkout");
+
+button2.on("click", function() {
+
+console.log("checkout")
     
 });
 
