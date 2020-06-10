@@ -2,10 +2,12 @@ var filteredData
 var filteredManufacturers
 var filteredAttributes
 var attributeSelected
+var departmentSelected
 var manufacturerSelected
 var originalData
 var uniqueManufacturers
 var uniqueAttributes
+var uniqueDepartments
 var uniqueSizeA
 var uniqueSizeB
 var uniqueSizeC
@@ -73,15 +75,22 @@ function render(renderData){
     //console.log(renderData)
 
     renderData.forEach((tyre) => {
+
         var row = tbody.append("tr");
         Object.entries(tyre).forEach(([key, value]) => {
             var cell = row.append("td");
             cell.text(value);
+
         });
+        row.append('input').attr('type','checkbox')
+        
+        
+        
     });
     
          uniqueManufacturers = d3.map(renderData, function(d){return d['Manufacturer'];}).keys()
          uniqueAttributes = d3.map(renderData, function(d){return d['Attribute'];}).keys()
+         uniqueDepartments = d3.map(renderData, function(d){return d['Department Name'];}).keys()
          uniqueSizeA = d3.map(renderData, function(d){return d['sizeA'];}).keys()
          console.log(uniqueSizeA)
          uniqueSizeB = d3.map(renderData, function(d){return d['sizeB'];}).keys()
@@ -92,6 +101,8 @@ function render(renderData){
     
         d3.select("#selectManufacturer")
          .html("")
+         .append('option')
+         .text("select")
         d3.select("#selectManufacturer")
         .selectAll('myOptions')
         .data(uniqueManufacturers)
@@ -102,6 +113,8 @@ function render(renderData){
     
         d3.select("#selectAttribute")
         .html("")
+        .append('option')
+        .text("select")
         d3.select("#selectAttribute")
         .selectAll('myOptions')
         .data(uniqueAttributes)
@@ -110,8 +123,22 @@ function render(renderData){
         .text(function (d) { return d; }) // text showed in the menu
         .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
+        d3.select("#selectDepartment")
+        .html("")
+        .append('option')
+        .text("select")
+        d3.select("#selectDepartment")
+        .selectAll('myOptions')
+        .data(uniqueDepartments)
+        .enter()
+        .append('option')
+        .text(function (d) { return d; }) // text showed in the menu
+        .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
        d3.select("#selectSizeA")
         .html("")
+        .append('option')
+        .text("select")
        d3.select("#selectSizeA")
        .selectAll('myOptions')
        .data(uniqueSizeA)
@@ -122,6 +149,8 @@ function render(renderData){
    
        d3.select("#selectSizeB")
        .html("")
+       .append('option')
+       .text("select")
        d3.select("#selectSizeB")
        .selectAll('myOptions')
        .data(uniqueSizeB)
@@ -132,6 +161,8 @@ function render(renderData){
 
        d3.select("#selectSizeC")
        .html("")
+       .append('option')
+       .text("select")
        d3.select("#selectSizeC")
        .selectAll('myOptions')
        .data(uniqueSizeC)
@@ -192,6 +223,14 @@ d3.csv("floydjune.csv").then(function(data) {
     console.log(selectedOption)
     updateAttribute(selectedOption)
     })
+
+    d3.select("#selectDepartment").on("change", function (d) {
+        // recover the option that has been chosen
+        var selectedOption = d3.select(this).property("value")
+        // run the updateChart function with this selected option
+        console.log(selectedOption)
+        updateDepartment(selectedOption)
+        })
 
     d3.select("#selectSizeA").on("change", function (d) {
         // recover the option that has been chosen
@@ -329,6 +368,27 @@ function updateManufacturer(selected) {
     render(filteredData)
 
 }
+
+function updateDepartment(selected) {
+
+    var tbody = d3.select("tbody");
+    var dataFilter = filteredData.filter(ob => ob['Department Name'] === selected)
+    tbody.selectAll("tr").remove()
+
+    filteredData.forEach((element) => {
+        var row = tbody.append("tr");
+        Object.entries(element).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+        });
+
+    });
+    
+    filteredData = dataFilter
+    render(filteredData)
+
+}
+
 
 function updateAttribute(selected) {
     var tbody = d3.select("tbody");
