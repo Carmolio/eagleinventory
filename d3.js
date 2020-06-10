@@ -148,7 +148,7 @@ function cleanData(element) {
     return element['Item Name'].charAt(0) == "R" || element['Item Name'].charAt(0) ==  "S" ;
   }
 
-d3.csv("eagleinventory.csv").then(function(data) {
+d3.csv("floydjune.csv").then(function(data) {
 
      //console.log(data[0]['Item Number'])
 
