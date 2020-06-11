@@ -10,7 +10,7 @@
   <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
   <title>Eagle Sales Shopping</title>
   <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="d3.js"></script>
+  <script type="text/javascript" src="index.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
@@ -35,8 +35,8 @@
   <div>
 <div>
 
-  <h1>EAGLE SALES</h1>
-  <br>
+  <h1 style="color:red"> EAGLE SALES</h1>
+
 
 </div>
 
@@ -73,7 +73,7 @@
 
 <div>
   <!-- Initialize a select button -->
-  Select tyre width </br>
+  Select tire width </br>
   <select class="selectpicker"  id="selectSizeA">
     <option value="all">all</option>
   </select>
@@ -83,7 +83,7 @@
 
 <div>
 
-  Select tyre ratio </br>
+  Select tire ratio </br>
   <select class="selectpicker"  id="selectSizeB">
     <option value="all">all</option>
   </select>
@@ -92,7 +92,7 @@
 
 <div>
 
-  Select tyre rim</br>
+  Select tire rim</br>
   <select class="selectpicker"  id="selectSizeC">
     <option value="all">all</option>
   </select>
@@ -110,7 +110,13 @@
 <div>Check cart totals<br>
 
   <!-- Clickable button -->
-  <button class="btn btn-warning" id="checkout">VIEW CART</button>
+  <button class="btn btn-warning" id="checkcart">VIEW CART</button>
+</div>
+
+<div>Checkout<br>
+
+  <!-- Clickable button -->
+  <button class="btn btn-warning" id="checkout">CHECKOUT</button>
 </div>
 
 
@@ -127,9 +133,9 @@
     <th>Department Name </th>
     <th>Manufacturer </th>
     <th>Quantity</th>
-    <th>Tyre Width</th>
-    <th>Tyre Ratio</th>
-    <th>Tyre Rim</th>
+    <th>Tire Width</th>
+    <th>Tire Ratio</th>
+    <th>Tire Rim</th>
     <th>Add to Cart</th>
   </tr>
   </thead>
