@@ -95,14 +95,20 @@ function render(renderData){
     });
     
          uniqueManufacturers = d3.map(renderData, function(d){return d['Manufacturer'];}).keys()
+         uniqueManufacturers.sort()
          uniqueAttributes = d3.map(renderData, function(d){return d['Attribute'];}).keys()
+         uniqueAttributes.sort()
          uniqueDepartments = d3.map(renderData, function(d){return d['Department Name'];}).keys()
+         uniqueDepartments.sort()
          uniqueSizeA = d3.map(renderData, function(d){return d['sizeA'];}).keys()
-         console.log(uniqueSizeA)
+         uniqueSizeA.sort(function(a, b){return a-b})
+        // console.log(uniqueSizeA)
          uniqueSizeB = d3.map(renderData, function(d){return d['sizeB'];}).keys()
-         console.log(uniqueSizeB)
+         uniqueSizeB.sort(function(a, b){return a-b})
+        // console.log(uniqueSizeB)
          uniqueSizeC = d3.map(renderData, function(d){return d['sizeC'];}).keys()
-         console.log(uniqueSizeC)
+         uniqueSizeC.sort(function(a, b){return a-b})
+        // console.log(uniqueSizeC)
 
     
         d3.select("#selectManufacturer")
@@ -226,7 +232,7 @@ d3.csv("floydjune.csv").then(function(data) {
     // recover the option that has been chosen
     var selectedOption = d3.select(this).property("value")
     // run the updateChart function with this selected option
-    console.log(selectedOption)
+   // console.log(selectedOption)
     updateAttribute(selectedOption)
     })
 
@@ -234,7 +240,7 @@ d3.csv("floydjune.csv").then(function(data) {
         // recover the option that has been chosen
         var selectedOption = d3.select(this).property("value")
         // run the updateChart function with this selected option
-        console.log(selectedOption)
+      //  console.log(selectedOption)
         updateDepartment(selectedOption)
         })
 
@@ -242,21 +248,21 @@ d3.csv("floydjune.csv").then(function(data) {
         // recover the option that has been chosen
         var selectedOption = d3.select(this).property("value")
         // run the updateChart function with this selected option
-        console.log(selectedOption)
+      //  console.log(selectedOption)
         updateSizeA(selectedOption)
         })
     d3.select("#selectSizeB").on("change", function (d) {
             // recover the option that has been chosen
             var selectedOption = d3.select(this).property("value")
             // run the updateChart function with this selected option
-            console.log(selectedOption)
+         //   console.log(selectedOption)
             updateSizeB(selectedOption)
             })
      d3.select("#selectSizeC").on("change", function (d) {
                 // recover the option that has been chosen
                 var selectedOption = d3.select(this).property("value")
                 // run the updateChart function with this selected option
-                console.log(selectedOption)
+            //    console.log(selectedOption)
                 updateSizeC(selectedOption)
                 })    
 
@@ -295,7 +301,7 @@ var button2 = d3.select("#checkout");
 
 button2.on("click", function() {
 
-console.log("checkout")
+//console.log("checkout")
 var tbody = d3.select("tbody");
 var rows = tbody.selectAll("tr");
 
@@ -319,9 +325,11 @@ rows.each(function(p) {
     }                   
   });
 
-  //console.log(purchasedItems)
-  alert(purchasedItems)
-  alert(purchasedPrices)
+
+  const add = (a, b) => parseFloat(a) + parseFloat(b)
+  var cartTotal = purchasedPrices.reduce(add)
+  alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
+ 
 
 });
 
