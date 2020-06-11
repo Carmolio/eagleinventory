@@ -11,6 +11,9 @@ var uniqueDepartments
 var uniqueSizeA
 var uniqueSizeB
 var uniqueSizeC
+var checkedRows = []
+var purchasedPrices = []
+var purchasedItems =[]
 
 /*** function to split a tyre size into smaller component sizes  
  * Size: "235/65R18" becomes and array ['235','65','18']
@@ -68,6 +71,8 @@ Size: "235/65R18"
 
 function render(renderData){
 
+    checkedRows = []
+
     var tbody = d3.select("tbody");
 
     tbody.selectAll("tr").remove()
@@ -83,6 +88,7 @@ function render(renderData){
 
         });
         row.append('input').attr('type','checkbox')
+        checkedRows.push(0)
         
         
         
@@ -257,7 +263,8 @@ d3.csv("floydjune.csv").then(function(data) {
     var button = d3.select("#reset");
 
 button.on("click", function() {
-
+    purchasedPrices = []
+    purchasedItems = []
     filteredData = originalData
     render(originalData)
 
@@ -284,18 +291,75 @@ button.on("click", function() {
 
 
 
-
-
 var button2 = d3.select("#checkout");
 
 button2.on("click", function() {
 
 console.log("checkout")
+var tbody = d3.select("tbody");
+var rows = tbody.selectAll("tr");
+
+rows.each(function(p) {
+    var cbval = d3.select(this)
+                    .selectAll("input")
+                        .property("checked")
+    if(cbval) {
+        var price = d3.select(this)
+                        .selectAll("td")
+        let valArray = []
+        price.each(function(p) {
+
+            t = d3.select(this).text()
+            valArray.push(t)
+        });
+        purchasedItems.push(valArray[0])
+        purchasedPrices.push(valArray[5])
+        
+           
+    }                   
+  });
+
+  //console.log(purchasedItems)
+  alert(purchasedItems)
+  alert(purchasedPrices)
+
+});
+
+});
+
+/**
+    var cbox = row.selectAll("td")
+    //cbox =d3.select(this)("input")
+    //if(cbox.property("checked")){
+     //   console.log("checked")
+ */
+
+/** 
+rows.selectAll("td")
+.each(function() {
+  console.log(d3.select(this).text());
+})
+**/
+/** 
+rows.selectAll("input")
+.each(function(b) {
+    if(d3.select(this).property("checked")){
+        console.log(row.cells[5])
     
-});
+    }
+    
+    //console.log("cb")
+  });
 
+  **/
 
-});
+/** 
+var boxes = d3.selectAll("input.checkbox:checked");
+boxes.each(function() {
+  console.log("hi")
+})
+*/
+    
 
 function updateSizeA(selected) {
 
