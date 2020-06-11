@@ -329,6 +329,9 @@ rows.each(function(p) {
   const add = (a, b) => parseFloat(a) + parseFloat(b)
   var cartTotal = purchasedPrices.reduce(add)
   alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
+  purchasedItems = []
+  purchasedPrices = []
+  cartTotal = []
  
 
 });
