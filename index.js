@@ -384,10 +384,10 @@ rows.each(function(p) {
 
   const add = (a, b) => parseFloat(a) + parseFloat(b)
   var cartTotal = purchasedPrices.reduce(add)
-  alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
+  //alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
   checkoutData.push([purchasedPrices],[purchasedItems],[purchasedItemDescriptions],[purchasedItemSizes])
-  alert(checkoutData)
-  console.log(checkoutData)
+  //alert(checkoutData)
+  //console.log(checkoutData)
   localStorage.setItem( 'checkoutObject', checkoutData );
   localStorage.setItem( 'checkoutCart', cartTotal );
   localStorage.setItem( 'numPurchases', numItemsPurchased );
@@ -400,8 +400,6 @@ rows.each(function(p) {
 
 });
 
-
-    
 
 function updateSizeA(selected) {
 
