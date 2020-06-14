@@ -89,12 +89,13 @@ function render(renderData){
     renderData.forEach((tyre) => {
 
         var row = tbody.append("tr");
+        row.append('input').attr('type','checkbox')
         Object.entries(tyre).forEach(([key, value]) => {
             var cell = row.append("td");
             cell.text(value);
 
         });
-        row.append('input').attr('type','checkbox')
+        
         checkedRows.push(0)
         
         
@@ -296,6 +297,7 @@ button.on("click", function() {
 
     originalData.forEach((element) => {
         var row = tbody.append("tr");
+        row.append('input').attr('type','checkbox')
         Object.entries(element).forEach(([key, value]) => {
             var cell = row.append("td");
             cell.text(value);
