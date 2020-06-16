@@ -62,6 +62,8 @@ selectpicker {
 <div class = "wrapper" style ="display:grid;grid-template-columns: 20% 20% 20% 20% 20%">
 
   <div >
+
+    <img style="width:50px;height:50px;" src = "eaglestock.jpg"></img>
     <!--
   <img src="https://raw.githubusercontent.com/seanwayland/eagleinventory/master/eaglelogo.jpg" alt="eagle" style = "width:100px">
     -->
@@ -72,22 +74,22 @@ selectpicker {
   
     <!-- Initialize a select button -->
     <div >
-    <a class = "txt" style="color:red"> Select tire width </a> </br>
-    <select class="selectpicker"  id="selectSizeA" >
+    <a class = "txt" style="color:red"> SELECT TIRE WIDTH </a> </br>
+    <select style="color:red" class="selectpicker"  id="selectSizeA" >
       <option value="all">all</option>
     </select>
   </div>
 
     <div style="color:red">
-    Select tire ratio </br>
-    <select class="selectpicker"  id="selectSizeB" >
+    SELECT TIRE RATIO </br>
+    <select style="color:red" class="selectpicker"  id="selectSizeB" >
       <option value="all">all</option>
     </select>
   </div>
 
     <div style="color:red">
-    Select tire rim</br>
-    <select class="selectpicker"  id="selectSizeC">
+    SELECT TIRE RIM</br>
+    <select style="color:red" class="selectpicker"  id="selectSizeC">
       <option value="all">all</option>
     </select>
   </div>
@@ -96,6 +98,7 @@ selectpicker {
     <!--
   <img src="https://raw.githubusercontent.com/seanwayland/eagleinventory/master/eaglelogo.jpg" alt="eagle" style = "width:100px" >
     -->
+    <img style="width:50px;height:50px;" src = "eaglestockrot.jpg"></img>
 </div>
 
 </div>
@@ -108,8 +111,8 @@ selectpicker {
 
 <div style="color:red">
   <!-- Initialize a select button -->
-  Select a department </br>
-  <select class="selectpicker"  id="selectDepartment">
+  SELECT A DEPARTMENT</br>
+  <select style="color:red" class="selectpicker"  id="selectDepartment">
     <option value="all">all</option>
   </select>
  
@@ -117,21 +120,20 @@ selectpicker {
 
 <div style="color:red">
 <!-- Initialize a select button -->
-  Select a manufacturer </br>
-<select class="selectpicker" data-style="btn-primary"  id="selectManufacturer">
+  SELECT A MANUFACTURE </br>
+<select style="color:red" class="selectpicker" data-style="btn-primary"  id="selectManufacturer">
   <option value="all">all</option>
 </select>
 
 </div>
 <div style="color:red">
   <!-- Initialize a select button -->
-  Select a load range </br>
-  <select class="selectpicker"  id="selectAttribute">
+  SELECT A LOAD RANGE </br>
+  <select style="color:red" class="selectpicker"  id="selectAttribute">
     <option value="all">all</option>
   </select>
  
 </div>
-
 <div >
  
 </div>
@@ -140,27 +142,31 @@ selectpicker {
 
 <div class = "wrapper" style ="display:grid;grid-template-columns: 20% 20% 20% 20% 20%">
 
-  <div></div>
+  <div>
+    <img style="width:100px;height:100px;" src = "eaglestock.jpg"></img>
+  </div>
 
-<div style="color:red">Reset table<br>
-
-  <!-- Clickable button -->
-
-  <button  class="btn btn-warning" id="reset">RESET TABLE</button>
-</div>
-
-<div style="color:red">Check cart totals<br>
+<div style="color:red"><br> RESET TABLE<br>
 
   <!-- Clickable button -->
-  <button class="btn btn-warning" id="checkcart">VIEW CART</button>
+
+  <button  style="color:blue" class="btn btn-warning" id="reset"><br>RESET TABLE</button>
 </div>
 
-<div style="color:red">Checkout<br>
+<div style="color:red"><br>CHECK CART TOTALS<br>
 
   <!-- Clickable button -->
-  <button class="btn btn-warning" id="checkout">CHECKOUT</button>
+  <button style="color:blue" class="btn btn-warning" id="checkcart"><br>VIEW CART</button>
 </div>
-<div></div>
+
+<div style="color:red"><br>CHECKOUT<br>
+
+  <!-- Clickable button -->
+  <button style="color:blue" class="btn btn-warning" id="checkout"><br>CHECKOUT</button>
+</div>
+<div>
+  <img style="width:100px;height:100px;" src = "eaglestockrot.jpg"></img>
+</div>
 
 </div>
 
@@ -169,12 +175,12 @@ selectpicker {
 </div>
 
 
-<table class = "table" style = "color:blue">
+<table class = "table" style = "color:blue; text-align: left;">
   <thead>
   <tr>
     <th>Add to Cart</th>
-    <th>Item Number </th>
-    <th>Item Name</th>
+    <th>Item # </th>
+    <th>Location #</th>
     <th>Item Description </th>
     <th>Load Range </th>
     <th>Size </th>

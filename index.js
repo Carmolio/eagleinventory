@@ -76,6 +76,21 @@ Size: "235/65R18"
 
 function render(renderData){
 
+    
+
+
+
+    renderData.sort(function(a, b){
+        if(a['Item Description'] < b['Item Description']) { return -1; }
+        if(a['Item Description'] > b['Item Description']) { return 1; }
+        return 0;
+    })
+
+
+
+
+    console.log(renderData)
+
     numItemsPurchased = 0
 
     checkedRows = []
@@ -93,6 +108,7 @@ function render(renderData){
         Object.entries(tyre).forEach(([key, value]) => {
             var cell = row.append("td");
             cell.text(value);
+            cell.style.textAlign = "left"
 
         });
         
