@@ -2,6 +2,7 @@
 var myData = localStorage['checkoutObject'];
 var numItems = localStorage['numPurchases']
 var cartAmount = localStorage['checkoutCart']
+
 localStorage.removeItem( 'checkoutObject' ); // Clear the localStorage
 localStorage.removeItem( 'checkoutCart' ); // Clear the localStorage
 localStorage.removeItem( 'numPurchases' ); // Clear the localStorage
@@ -21,6 +22,7 @@ var prices = [];
 var items = [];
 var descriptions = [];
 var sizes = [];
+var names =[];
 
 var counter = 0;
 for ( let i = 0; i < numItems; i++ ){
@@ -42,11 +44,21 @@ for ( let i = 0; i < numItems; i++ ){
     counter ++
 }
 
+for ( let i = 0; i < numItems; i++ ){
+    names.push(myDataArray[counter])
+    counter ++
+}
+
 counter = 0
 
 
 $(document).ready(function(){
-      $("p").append('Total cost: $' + cartAmount + ' You purchased ' + numItems + ' items. Item prices: ' + prices + ' Items ordered: ' + descriptions + ' Item Sizes : ' + sizes);
+
+    for ( i = 0; i < numItems; i++){
+      $("p").append('Item : ' + items[i] + ' | ' + '   Name : ' + names[i] +  ' | ' + ' Description: ' + descriptions[i] + ' | '  + '   Size : ' + sizes[i] +  ' | '  + ' Price $ ' + prices[i]   + "<br>" );
+      
+    }
+    $("p").append('Total cost: $' + cartAmount)
     });
 
 

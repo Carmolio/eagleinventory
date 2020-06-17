@@ -17,6 +17,7 @@ var purchasedItems =[]
 var puchasedItemNames =[]
 var purchasedItemDescriptions = []
 var purchasedItemSizes = []
+var purchasedItemNames = []
 var checkoutData = []
 var numItemsPurchased
 
@@ -299,6 +300,7 @@ button.on("click", function() {
     numItemsPurchased = 0
     purchasedItemDescriptions = []
     purchasedItemSizes = []
+    purchasedItemNames = []
     filteredData = originalData
     render(originalData)
 
@@ -349,8 +351,9 @@ rows.each(function(p) {
         });
         purchasedItems.push(valArray[0])
         purchasedPrices.push(valArray[5])
-        purchasedItemDescriptions.push(valArray[1])
+        purchasedItemDescriptions.push(valArray[2])
         purchasedItemSizes.push(valArray[4])
+        purchasedItemNames.push(valArray[1])
         
            
     }                   
@@ -363,6 +366,8 @@ rows.each(function(p) {
   purchasedPrices = []
   purchasedItemSizes = []
   purchasedItemDescriptions = []
+  purchasedItemNames =[]
+
   cartTotal = []
   numItemsPurchased = 0
  
@@ -392,8 +397,9 @@ rows.each(function(p) {
         });
         purchasedItems.push(valArray[0])
         purchasedPrices.push(valArray[5])
-        purchasedItemDescriptions.push(valArray[1])
+        purchasedItemDescriptions.push(valArray[2])
         purchasedItemSizes.push(valArray[4])
+        purchasedItemNames.push(valArray[1])
         numItemsPurchased = numItemsPurchased + 1
         
     
@@ -404,9 +410,9 @@ rows.each(function(p) {
   const add = (a, b) => parseFloat(a) + parseFloat(b)
   var cartTotal = purchasedPrices.reduce(add)
   //alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
-  checkoutData.push([purchasedPrices],[purchasedItems],[purchasedItemDescriptions],[purchasedItemSizes])
+  checkoutData.push([purchasedPrices],[purchasedItems],[purchasedItemDescriptions],[purchasedItemSizes],[purchasedItemNames])
   //alert(checkoutData)
-  //console.log(checkoutData)
+  console.log(checkoutData)
   localStorage.setItem( 'checkoutObject', checkoutData );
   localStorage.setItem( 'checkoutCart', cartTotal );
   localStorage.setItem( 'numPurchases', numItemsPurchased );
