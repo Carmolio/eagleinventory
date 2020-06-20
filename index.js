@@ -13,12 +13,34 @@ var uniqueSizeB
 var uniqueSizeC
 var checkedRows = []
 var purchasedPrices = []
-var purchasedItems =[]
-var puchasedItemNames =[]
+var purchasedItems = []
+var purchasedItemNames = []
 var purchasedItemDescriptions = []
 var purchasedItemSizes = []
-var purchasedItemNames = []
+var purchasedDepartments = []
+var purchasedSizeA = []
+var purchasedSizeB = []
+var purchasedSizeC = []
+var purchasedManufacturers = []
+var purchasedLoadRanges = []
+
 var checkoutData = []
+
+/***
+ * 
+ * 0: "929" ( Items)
+1: "R41B-42" location (ItemNAmes)
+2: "ACCELERA M/T-01" description (ITemDEscriptions)
+3: "C" load range (LoadRanges)
+4: "235/75R15" size 
+5: "57.78" price 
+6: "AUTO TIRES" department 
+7: "ACCELERA" manufacter 
+8: "1" quantity 
+9: "235" size a 
+10: "75" size b
+11: "15" size c
+ */
 var numItemsPurchased
 
 /*** function to split a tyre size into smaller component sizes  
@@ -294,6 +316,22 @@ d3.csv("floydjune.csv").then(function(data) {
 
     var button = d3.select("#reset");
 
+    /***
+ * 
+ * 0: "929" ( Items)
+1: "R41B-42" location (ItemNAmes)
+2: "ACCELERA M/T-01" description (ITemDEscriptions)
+3: "C" load range (LoadRanges)
+4: "235/75R15" size 
+5: "57.78" price 
+6: "AUTO TIRES" department 
+7: "ACCELERA" manufacter 
+8: "1" quantity 
+9: "235" size a 
+10: "75" size b
+11: "15" size c
+ */
+
 button.on("click", function() {
     purchasedPrices = []
     purchasedItems = []
@@ -301,6 +339,14 @@ button.on("click", function() {
     purchasedItemDescriptions = []
     purchasedItemSizes = []
     purchasedItemNames = []
+    purchasedDepartments = []
+    purchasedLoadRanges =[]
+    purchasedManufacturers = []
+    purchasedSizeA = []
+    purchasedSizeB = []
+    purchasedSizeC = []
+
+
     filteredData = originalData
     render(originalData)
 
@@ -349,11 +395,36 @@ rows.each(function(p) {
             t = d3.select(this).text()
             valArray.push(t)
         });
+
+
+        
+    /***
+ * 
+ * 0: "929" ( Items)
+1: "R41B-42" location (ItemNAmes)
+2: "ACCELERA M/T-01" description (ITemDEscriptions)
+3: "C" load range (LoadRanges)
+4: "235/75R15" size 
+5: "57.78" price 
+6: "AUTO TIRES" department 
+7: "ACCELERA" manufacter 
+8: "1" quantity 
+9: "235" size a 
+10: "75" size b
+11: "15" size c
+ */
+
         purchasedItems.push(valArray[0])
-        purchasedPrices.push(valArray[5])
-        purchasedItemDescriptions.push(valArray[2])
-        purchasedItemSizes.push(valArray[4])
         purchasedItemNames.push(valArray[1])
+        purchasedItemDescriptions.push(valArray[2])
+        purchasedLoadRanges.push(valArray[3])
+        purchasedItemSizes.push(valArray[4])
+        purchasedPrices.push(valArray[5])
+        purchasedDepartments.push(valArray[6])
+        purchasedManufacturers.push(valArray[7])
+        purchasedSizeA.push(valArray[9])
+        purchasedSizeB.push(valArray[10])
+        purchasedSizeC.push(valArray[11])
         
            
     }                   
@@ -362,11 +433,20 @@ rows.each(function(p) {
   const add = (a, b) => parseFloat(a) + parseFloat(b)
   var cartTotal = purchasedPrices.reduce(add)
   alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
-  purchasedItems = []
+
   purchasedPrices = []
-  purchasedItemSizes = []
+  purchasedItems = []
+  numItemsPurchased = 0
   purchasedItemDescriptions = []
-  purchasedItemNames =[]
+  purchasedItemSizes = []
+  purchasedItemNames = []
+  purchasedDepartments = []
+  purchasedLoadRanges =[]
+  purchasedManufacturers = []
+  purchasedSizeA = []
+  purchasedSizeB = []
+  purchasedSizeC = []
+
 
   cartTotal = []
   numItemsPurchased = 0
@@ -395,12 +475,21 @@ rows.each(function(p) {
             t = d3.select(this).text()
             valArray.push(t)
         });
+
         purchasedItems.push(valArray[0])
-        purchasedPrices.push(valArray[5])
-        purchasedItemDescriptions.push(valArray[2])
-        purchasedItemSizes.push(valArray[4])
         purchasedItemNames.push(valArray[1])
+        purchasedItemDescriptions.push(valArray[2])
+        purchasedLoadRanges.push(valArray[3])
+        purchasedItemSizes.push(valArray[4])
+        purchasedPrices.push(valArray[5])
+        purchasedDepartments.push(valArray[6])
+        purchasedManufacturers.push(valArray[7])
+        purchasedSizeA.push(valArray[9])
+        purchasedSizeB.push(valArray[10])
+        purchasedSizeC.push(valArray[11])
+
         numItemsPurchased = numItemsPurchased + 1
+        console.log(valArray)
         
     
            
@@ -410,14 +499,17 @@ rows.each(function(p) {
   const add = (a, b) => parseFloat(a) + parseFloat(b)
   var cartTotal = purchasedPrices.reduce(add)
   //alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
-  checkoutData.push([purchasedPrices],[purchasedItems],[purchasedItemDescriptions],[purchasedItemSizes],[purchasedItemNames])
+  checkoutData.push([purchasedPrices],[purchasedItems],[purchasedItemDescriptions],[purchasedItemSizes],[purchasedItemNames],[purchasedDepartments],[purchasedManufacturers],[purchasedSizeA],[purchasedSizeB],[purchasedSizeC], [purchasedLoadRanges])
   //alert(checkoutData)
   console.log(checkoutData)
   localStorage.setItem( 'checkoutObject', checkoutData );
   localStorage.setItem( 'checkoutCart', cartTotal );
   localStorage.setItem( 'numPurchases', numItemsPurchased );
+
+  
   var url = './checkout.html';
   window.location = url;
+  
 
  
 
