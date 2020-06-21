@@ -55,6 +55,7 @@ var sizeAs = []
 var sizeBs = []
 var sizeCs = []
 var LoadRanges =[]
+var csvCheckoutString =""
 
 var counter = 0;
 for ( let i = 0; i < numItems; i++ ){
@@ -141,39 +142,49 @@ $(document).ready(function(){
     tbody.selectAll("tr").remove()
 
     for ( i = 0; i < numItems; i++){
+
+        csvCheckoutString = csvCheckoutString + "TYRE DETAILS: ,"
      
         var row = tbody.append("tr");
 
         var cellOne = row.append("td");
         cellOne.text(items[i]);
+        csvCheckoutString = csvCheckoutString + items[i] + ","
         cellOne.style.textAlign = "left"
 
         var cellTwo = row.append("td");
         cellTwo.text(names[i]);
+        csvCheckoutString = csvCheckoutString + names[i] + ","
         cellTwo.style.textAlign = "left"
 
         var cellThree = row.append("td");
         cellThree.text(descriptions[i]);
+        csvCheckoutString = csvCheckoutString + items[i] + ","
         cellThree.style.textAlign = "left"
 
         var cellFour = row.append("td");
         cellFour.text(LoadRanges[i]);
+        csvCheckoutString = csvCheckoutString + LoadRanges[i] + ","
         cellFour.style.textAlign = "left"
 
         var cellFive = row.append("td");
         cellFive.text(sizes[i]);
+        csvCheckoutString = csvCheckoutString + sizes[i] + ","
         cellFive.style.textAlign = "left"
 
         var cellSix = row.append("td");
         cellSix.text(prices[i]);
+        csvCheckoutString = csvCheckoutString + "$" + prices[i] + ","
         cellSix.style.textAlign = "left"
 
         var cellSeven = row.append("td");
         cellSeven.text(departments[i]);
+        csvCheckoutString = csvCheckoutString + departments[i] + ","
         cellSeven.style.textAlign = "left"
 
         var cellEight = row.append("td");
         cellEight.text(Manufacturers[i]);
+        csvCheckoutString = csvCheckoutString + Manufacturers[i] + ","
         cellEight.style.textAlign = "left"
 
         var cellNine = row.append("td");
@@ -207,6 +218,28 @@ $(document).ready(function(){
     
     //console.log(total)
     $("p").append(' Total of Order: $' + totalString  + "<br>")
+
+    var button = d3.select("#checkout");
+
+    button.on("click", function() {
+
+        alert(csvCheckoutString)
+        alert(totalString)
+
+
+    });
+
+    var buttonTwo = d3.select("#checkoutNoTax");
+
+    buttonTwo.on("click", function() {
+
+        alert(csvCheckoutString)
+        alert(cartAmountString)
+
+
+    });
+
+
 
     });
 
