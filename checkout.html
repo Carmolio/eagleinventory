@@ -65,7 +65,7 @@ th {
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="business" value="sean@seanwayland.com">
         <input type="hidden" name="lc" value="CA">
-        <input type="hidden" name="item_name" value="Tangled Roots">
+        <input id ="item" type="hidden" name="item_name" value="Tangled Roots">
         <input type="hidden" name="button_subtype" value="services">
         <input type="hidden" name="no_note" value="0">
         <input id ="order" type="hidden" name="cn" value="Add special instructions to the seller">
@@ -99,6 +99,7 @@ th {
         var myvariable = 2;
         document.getElementById('price').value=checkPrice;
         document.getElementById('order').value=checkString;
+        document.getElementById('item').value=checkString;
         document.getElementById('num').append(checkNumItems + " Tires")
         document.getElementById('orderinstructions').append(checkString);
        // alert(checkString)
