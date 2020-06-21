@@ -507,7 +507,7 @@ rows.each(function(p) {
   localStorage.setItem( 'numPurchases', numItemsPurchased );
 
   
-  var url = '/vieworder.html';
+  var url = 'eagleinventory/vieworder.html';
   window.location = url;
   
 
