@@ -432,7 +432,7 @@ rows.each(function(p) {
 
   const add = (a, b) => parseFloat(a) + parseFloat(b)
   var cartTotal = purchasedPrices.reduce(add)
-  alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
+  //alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
 
   purchasedPrices = []
   purchasedItems = []
@@ -507,7 +507,7 @@ rows.each(function(p) {
   localStorage.setItem( 'numPurchases', numItemsPurchased );
 
   
-  var url = './vieworder.html';
+  var url = '/vieworder.html';
   window.location = url;
   
 
