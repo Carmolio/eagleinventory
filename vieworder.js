@@ -230,7 +230,7 @@ $(document).ready(function(){
         localStorage.setItem( 'checkoutNumPurchases', numItems );
         localStorage.setItem('checkoutString', csvCheckoutString)
 
-        var url = './checkout.html';
+        var url = '/eagleinventory/checkout.html';
         window.location = url;
 
 
@@ -247,7 +247,7 @@ $(document).ready(function(){
         localStorage.setItem( 'checkoutNumPurchases', numItems );
         localStorage.setItem('checkoutString', csvCheckoutString)
 
-        var url = './notaxcheckout.html';
+        var url = '/eagleinventory/notaxcheckout.html';
         window.location = url;
 
 
