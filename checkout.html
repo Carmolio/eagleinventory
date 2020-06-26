@@ -85,11 +85,11 @@ table.center {
     </form>
 
 
-    <p id ="num">YOU PURCHASED: </p>
-    <br>
-    <p>ORDER DETAILS</p>
-    <br>
-    <p id = "orderinstructions"></p>
+  
+    
+    <p style="color:blue">ORDER DETAILS</p>
+    
+    <p style="color:blue" id = "orderinstructions"></p>
 
     <div style = "text-align: center">
 
@@ -110,19 +110,91 @@ table.center {
         var checkPrice = localStorage['checkoutPrice'];
         var checkNumItems = localStorage['checkoutNumPurchases']
         var checkString = localStorage['checkoutString']
+        var checkTax = localStorage['checkoutTax']
         var checkStringArray = checkString.split(",");
-        console.log(checkString)
-        console.log(checkStringArray)
+        //console.log(checkString)
+       // console.log(checkStringArray)
+
+        var orderDescriptions = []
+        var orderSizes = []
+        var orderPrices = []
+
+        for ( let i = 0; i < checkNumItems; i++){
+
+          orderDescriptions.push(checkStringArray[3 + i*9])
+          orderSizes.push(checkStringArray[5 + i*9])
+          orderPrices.push(checkStringArray[6 + i*9])
+        }
+
+        console.log(orderDescriptions)
+        console.log(orderSizes)
+        console.log(orderPrices)
+
+        var tbody = d3.select("tbody");
+
+
+
+for ( i = 0; i < checkNumItems; i++){
+
+ 
+    var row = tbody.append("tr");
+
+    var cellOne = row.append("td");
+    cellOne.text(orderDescriptions[i]);
+    cellOne.style.textAlign = "left"
+
+    var cellTwo = row.append("td");
+    cellTwo.text(orderSizes[i]);
+    cellTwo.style.textAlign = "left"
+
+    var cellThree = row.append("td");
+    cellThree.text(orderPrices[i]);
+    cellThree.style.textAlign = "left"
+
+}
+
+    var tbody = d3.select("tbody");
+
+    var totalRow = tbody.append("tr");
+    var cell = totalRow.append("td");
+    cell.text("");
+    cell.style.textAlign = "left"
+
+    var cellTwo = totalRow.append("td");
+    cellTwo.text("Tax");
+    cellTwo.style.textAlign = "left"
+
+    var cellThree = totalRow.append("td");
+    cellThree.text("$" + checkTax);
+    cellThree.style.textAlign = "left"
+
+    var row = tbody.append("tr");
+    var cellOne = row.append("td");
+    cellOne.text("");
+    cellOne.style.textAlign = "left"
+
+    var cellTwo = row.append("td");
+    cellTwo.text("Total");
+    cellTwo.style.textAlign = "left"
+
+    var cellThree = row.append("td");
+    cellThree.text("$" + checkPrice);
+    cellThree.style.textAlign = "left"
+
+
+
+
 
 
         localStorage.removeItem( 'checkoutPrice' ); // Clear the localStorage
         localStorage.removeItem( 'checkoutNumPurchases' ); // Clear the localStorage
         localStorage.removeItem( 'checkoutString' ); // Clear the localStorage
+        localStorage.removeItem( 'checkoutTax');
         var myvariable = 2;
         document.getElementById('price').value=checkPrice;
         document.getElementById('order').value=checkString;
         document.getElementById('item').value=checkString;
-        document.getElementById('num').append(checkNumItems + " Tires")
+        
 
         //document.getElementById('orderinstructions').append(checkString);
        // alert(checkString)

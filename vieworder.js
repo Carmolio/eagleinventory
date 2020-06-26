@@ -70,6 +70,7 @@ for ( let i = 0; i < numItems; i++ ){
 for ( let i = 0; i < numItems; i++ ){
     descriptions.push(myDataArray[counter]);
     counter ++;
+    
 
 }
 for ( let i = 0; i < numItems; i++ ){
@@ -159,7 +160,7 @@ $(document).ready(function(){
 
         var cellThree = row.append("td");
         cellThree.text(descriptions[i]);
-        csvCheckoutString = csvCheckoutString + items[i] + ","
+        csvCheckoutString = csvCheckoutString + descriptions[i] + ","
         cellThree.style.textAlign = "left"
 
         var cellFour = row.append("td");
@@ -229,6 +230,7 @@ $(document).ready(function(){
         localStorage.setItem( 'checkoutPrice', totalString );
         localStorage.setItem( 'checkoutNumPurchases', numItems );
         localStorage.setItem('checkoutString', csvCheckoutString)
+        localStorage.setItem('checkoutTax', taxString )
 
         var url = './checkout.html';
         window.location = url;
