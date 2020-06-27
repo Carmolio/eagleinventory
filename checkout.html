@@ -71,8 +71,11 @@ table.center {
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="business" value="sean@seanwayland.com">
+        <input type="hidden" name="return" value="http://www.eaglesales.com/successful.html">
         <input type="hidden" name="lc" value="CA">
-        <input id ="item" type="hidden" name="item_name" value="Tangled Roots">
+        <input id ="item" type="hidden" name="item_name" value="Tires">
+        <input id ="custom" type="hidden" name="custom" value="Tires">
+
         <input type="hidden" name="button_subtype" value="services">
         <input type="hidden" name="no_note" value="0">
         <input id ="order" type="hidden" name="cn" value="Add special instructions to the seller">
@@ -83,6 +86,8 @@ table.center {
         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
     </form>
+
+ 
 
 
   
@@ -194,6 +199,7 @@ for ( i = 0; i < checkNumItems; i++){
         document.getElementById('price').value=checkPrice;
         document.getElementById('order').value=checkString;
         document.getElementById('item').value=checkString;
+        document.getElementById('custom').value=checkString;
         
 
         //document.getElementById('orderinstructions').append(checkString);
