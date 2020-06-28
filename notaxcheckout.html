@@ -63,9 +63,26 @@ table.center {
     
     
     
-      <h1 style="color:blue">TAX EXEMPT CHECKOUT</h1>
-    <div>
-      
+      <h1 style="color:blue">CHECKOUT</h1>
+      <div>
+
+        <p id="myText" style="color:blue">
+          Please click here to email this order to us before clicking "buy now" (with paypal) thank you. 
+        </p>
+      <button style="color:red" onclick="sendMail(); return false">Email your order</button>
+      <br>
+      </div>
+      <div>
+        
+        
+        <p style="color:blue">Click the button to print this order for your records .</p>
+
+        <button style="color:red" onclick="window.print()">Print this page</button>
+        <br>
+        </div>
+        <div>
+          <br>
+        
     
 
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -104,8 +121,26 @@ table.center {
     <tbody></tbody>
   </table>
 
-  <p><a style="color:blue" href="mailto:seanwayland@gmail.com">Please use this link to email your tax exempt form to us.</a></p>
 </div>
+
+<script>
+
+  var checkString = localStorage['checkoutString']
+  var checkPrice = localStorage['checkoutPrice'];
+  
+  function sendMail() {
+      var link = "mailto:seanwayland@gmail.com"
+  
+      + "?cc="
+              
+               + "&subject=" + escape("Tire Order Eagle Sales")
+               + "&body=" +escape("Thank you for your order. Your order details are: ") + escape( "\t\r\n") + escape(checkString) + escape( "\t\r\n") +
+               escape("Your Price: $") + escape(checkPrice)
+      ;
+  
+      window.location.href = link;
+  }
+  </script>
 
   <script>
       
