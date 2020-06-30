@@ -13,6 +13,7 @@
     <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
     -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <style>
@@ -38,6 +39,7 @@ table.center {
 
   
   <body>
+    <div class="mx-auto" style="background-color: white">
     <div>
       <a href="./index.html">HOME</a>
     </div>
@@ -64,45 +66,54 @@ table.center {
       
       
         <h1 style="color:blue">CHECKOUT</h1>
-      <div>
-
-        <p id="myText" style="color:blue">
-          Please click here to email this order to us before clicking "buy now" (with paypal) thank you. 
-        </p>
-      <button style="color:red" onclick="sendMail(); return false">Email your order</button>
-      <br>
-      </div>
-      <div>
-        
-        
-        <p style="color:blue">Click the button to print this order for your records .</p>
-
-        <button style="color:red" onclick="window.print()">Print this page</button>
-        <br>
-        </div>
-        <div>
-          <br>
-        
       
 
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-        <input type="hidden" name="cmd" value="_xclick">
-        <input type="hidden" name="business" value="sean@seanwayland.com">
-        <input type="hidden" name="return" value="http://www.eaglesales.com/successful.html">
-        <input type="hidden" name="lc" value="CA">
-        <input id ="item" type="hidden" name="item_name" value="Tires">
-        <input id ="custom" type="hidden" name="custom" value="Tires">
-
-        <input type="hidden" name="button_subtype" value="services">
-        <input type="hidden" name="no_note" value="0">
-        <input id ="order" type="hidden" name="cn" value="Add special instructions to the seller">
-        <input type="hidden" name="no_shipping" value="2">
-        <input id = "price" name="amount" value="1.00">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
+          <div id="paypal-button"></div>
+          <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+          <script>
+            paypal.Button.render({
+              // Configure environment
+              env: 'sandbox',
+              client: {
+                sandbox: 'AWQc7b5ntxGcArywcZ7Ksf1_I1J01RbKw-4g7ugzQNIRvGewW5zbWnXYXxVWFkpOelUtoOnWRF4gozXB',
+                production: 'demo_production_client_id'
+              },
+              // Customize button (optional)
+              locale: 'en_US',
+              style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill',
+              },
+          
+              // Enable Pay Now checkout flow (optional)
+              commit: true,
+          
+              // Set up a payment
+              payment: function(data, actions) {
+                return actions.payment.create({
+                  transactions: [{
+                    amount: {
+                      total: 0.01,
+                      currency: 'USD'
+                    }
+                  }]
+                });
+              },
+              // Execute the payment
+              onAuthorize: function(data, actions) {
+                return actions.payment.execute().then(function() {
+                  // Show a confirmation message to the buyer
+                  //window.alert('Thank you for your purchase!' + checkStringArray);
+                  var url = './order.html';
+                  window.location = url;
+                  
+          
+                });
+              }
+            }, '#paypal-button');
+          
+          </script>
 
 
 
@@ -129,6 +140,7 @@ table.center {
       <tbody></tbody>
     </table>
   </div>
+</div>
 
 
 
@@ -234,10 +246,10 @@ for ( i = 0; i < checkNumItems; i++){
 
 
 
-        localStorage.removeItem( 'checkoutPrice' ); // Clear the localStorage
-        localStorage.removeItem( 'checkoutNumPurchases' ); // Clear the localStorage
-        localStorage.removeItem( 'checkoutString' ); // Clear the localStorage
-        localStorage.removeItem( 'checkoutTax');
+        //localStorage.removeItem( 'checkoutPrice' ); // Clear the localStorage
+        //localStorage.removeItem( 'checkoutNumPurchases' ); // Clear the localStorage
+        //localStorage.removeItem( 'checkoutString' ); // Clear the localStorage
+        //localStorage.removeItem( 'checkoutTax');
         var myvariable = 2;
         document.getElementById('price').value=checkPrice;
         document.getElementById('order').value=orderString;
