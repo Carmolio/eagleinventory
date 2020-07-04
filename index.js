@@ -372,11 +372,10 @@ button.on("click", function() {
     
 });
 
-
-
-var button2 = d3.select("#checkcart");
+var button2 = d3.select("#popup");
 
 button2.on("click", function() {
+    //alert("popup clicked")
 
 //console.log("checkout")
 var tbody = d3.select("tbody");
@@ -395,7 +394,6 @@ rows.each(function(p) {
             t = d3.select(this).text()
             valArray.push(t)
         });
-
 
         
     /***
@@ -425,6 +423,8 @@ rows.each(function(p) {
         purchasedSizeA.push(valArray[9])
         purchasedSizeB.push(valArray[10])
         purchasedSizeC.push(valArray[11])
+
+        numItemsPurchased = numItemsPurchased + 1
         
            
     }                   
@@ -434,6 +434,17 @@ rows.each(function(p) {
   var cartTotal = purchasedPrices.reduce(add)
   //alert("You ordered these items: " + purchasedItems + " cart total is $" + cartTotal)
 
+
+  checkoutData.push([purchasedPrices],[purchasedItems],[purchasedItemDescriptions],[purchasedItemSizes],[purchasedItemNames],[purchasedDepartments],[purchasedManufacturers],[purchasedSizeA],[purchasedSizeB],[purchasedSizeC], [purchasedLoadRanges])
+  //alert(checkoutData)
+  console.log(checkoutData)
+  localStorage.setItem( 'checkoutObject', checkoutData );
+  localStorage.setItem( 'checkoutCart', cartTotal );
+  localStorage.setItem( 'numPurchases', numItemsPurchased );
+
+  
+
+  checkoutData = []
   purchasedPrices = []
   purchasedItems = []
   numItemsPurchased = 0
@@ -450,6 +461,10 @@ rows.each(function(p) {
 
   cartTotal = []
   numItemsPurchased = 0
+
+  window.open("./orderpopup.html");
+
+ 
  
 
 });
@@ -650,7 +665,6 @@ function updateAttribute(selected) {
     render(filteredData)
 
 }
-
 
 
 

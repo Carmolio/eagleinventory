@@ -220,40 +220,10 @@ $(document).ready(function(){
     //console.log(total)
     $("p").append(' Total of Order: $' + totalString  + "<br>")
 
-    var button = d3.select("#checkout");
-
-    button.on("click", function() {
-
-      //  alert(csvCheckoutString)
-      //  alert(totalString)
-
-        localStorage.setItem( 'checkoutPrice', totalString );
-        localStorage.setItem( 'checkoutNumPurchases', numItems );
-        localStorage.setItem('checkoutString', csvCheckoutString)
-        localStorage.setItem('checkoutTax', taxString )
-
-        var url = './checkout.html';
-        window.location = url;
+    
 
 
-    });
 
-    var buttonTwo = d3.select("#checkoutNoTax");
-
-    buttonTwo.on("click", function() {
-
-       // alert(csvCheckoutString)
-       // alert(cartAmountString)
-
-        localStorage.setItem( 'checkoutPrice', cartAmountString );
-        localStorage.setItem( 'checkoutNumPurchases', numItems );
-        localStorage.setItem('checkoutString', csvCheckoutString)
-
-        var url = './notaxcheckout.html';
-        window.location = url;
-
-
-    });
 
 
 
