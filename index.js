@@ -50,6 +50,68 @@ var numItemsPurchased
 function splitSize(sizeString){
 
 var str = sizeString;
+
+// process strings with X or  differently
+if (str.includes("X")){
+
+    if (str.includes("R")){
+        // string is of form a x b R c 
+        //console.log("R" + str)
+        var res = str.split("X");
+        //console.log(res[0])
+        
+        sizeA = res[0]
+        var res2 = res[1].split("R")
+        sizeB = res2[0]
+        sizeC = res2[1]
+            
+
+
+    }
+
+    else if (str.includes("-")){
+        // string is of form a x b - c 
+        //console.log("-" + str)
+        var res = str.split("X");
+        //console.log(res[0])
+        
+        sizeA = res[0]
+        var res2 = res[1].split("-")
+        sizeB = res2[0]
+        sizeC = res2[1]
+
+    }
+
+    else {
+        // string is of form a x c 
+       // console.log(str)
+       var res = str.split("X");
+       sizeA = res[0]
+       sizeB = "0"
+       sizeC = res[1]
+
+
+
+    }
+
+}
+else if (str.includes("-")){
+
+    var res = str.split("-");
+    sizeA = res[0]
+    sizeB = "0"
+    sizeC = res[1]
+
+}
+else if (str.includes("R") && !(str.includes("/"))){
+
+    var res = str.split("R");
+    sizeA = res[0]
+    sizeB = "0"
+    sizeC = res[1]
+
+}
+else{
 var res = str.split("/");
 if(res[1]){
     var res2 = res[1].split("R")}
@@ -75,6 +137,8 @@ else {
     sizeC = "NA"
 }
 //console.log(sizeC)
+
+}
 
 result = [sizeA, sizeB, sizeC]
 return result
