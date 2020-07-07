@@ -1,0 +1,240 @@
+<head>
+
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+  <title>Eagle Sales Shopping</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+  <style>
+
+
+td {    
+padding: 10px;
+}
+th {
+padding: 10px;
+}
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+    </style>
+
+ <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+
+</head>
+
+
+
+<body>
+  <div>
+    <a href="./index.html">HOME</a>
+  </div>
+
+
+
+<!--
+<div class="mx-auto">
+-->
+  <div>
+    <div style = "text-align: center">
+      <div>
+    
+        <div>
+          <h5 style="color:red"> EAGLE SALES AND MARKETING LLC</h5>
+        </div>
+    
+        <div class = "wrapper" style ="display:grid;grid-template-columns:  30% 40% 30%"> </div>
+    
+      
+      <div>
+      <img style="width:100px;height:100px;" src = "eaglestock.jpg"></img>
+    
+    
+    
+      <h1 style="color:blue">CHECKOUT</h1>
+      <div>
+
+        <p id="myText" style="color:blue">
+          Please click here to email this order to us before clicking "buy now" (with paypal) thank you. 
+        </p>
+        <p id="myText" style="color:blue">
+          Please attach your tax exempt form to the email. 
+        </p>
+      <button style="color:red" onclick="sendMail(); return false">Email your order</button>
+      <br>
+      </div>
+      <div>
+        
+        
+        <p style="color:blue">Click the button to print this order for your records .</p>
+
+        <button style="color:red" onclick="window.print()">Print this page</button>
+        <br>
+        </div>
+        <div>
+          <br>
+        
+    
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="sean@seanwayland.com">
+      <input type="hidden" name="lc" value="CA">
+      <input id ="item" type="hidden" name="item_name" value="Tangled Roots">
+      <input type="hidden" name="button_subtype" value="services">
+      <input type="hidden" name="no_note" value="0">
+      <input id ="order" type="hidden" name="cn" value="Add special instructions to the seller">
+      <input type="hidden" name="no_shipping" value="2">
+      <input id = "price" name="amount" value="1.00">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+  </form>
+
+
+
+  
+  <p style="color:blue">ORDER DETAILS</p>
+  
+  <p style="color:blue" id = "orderinstructions"></p>
+
+  <div style = "text-align: center">
+
+  <table class = "center" ; style = "color:blue; text-align: center;">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <th>Size</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+</div>
+
+<script>
+
+  var checkString = localStorage['checkoutString']
+  var checkPrice = localStorage['checkoutPrice'];
+  
+  function sendMail() {
+      var link = "mailto:seanwayland@gmail.com"
+  
+      + "?cc="
+              
+               + "&subject=" + escape("Tire Order Eagle Sales")
+               + "&body=" +escape("Thank you for your order. Your order details are: ") + escape( "\t\r\n") + escape(checkString) + escape( "\t\r\n") +
+               escape("Your Price: $") + escape(checkPrice)
+      ;
+  
+      window.location.href = link;
+  }
+  </script>
+
+  <script>
+      
+      var checkPrice = localStorage['checkoutPrice'];
+      var checkNumItems = localStorage['checkoutNumPurchases']
+      var checkString = localStorage['checkoutString']
+      var checkTax = localStorage['checkoutTax']
+      var checkStringArray = checkString.split(",");
+      //console.log(checkString)
+     // console.log(checkStringArray)
+
+      var orderDescriptions = []
+      var orderSizes = []
+      var orderPrices = []
+
+      for ( let i = 0; i < checkNumItems; i++){
+
+        orderDescriptions.push(checkStringArray[3 + i*9])
+        orderSizes.push(checkStringArray[5 + i*9])
+        orderPrices.push(checkStringArray[6 + i*9])
+      }
+
+      console.log(orderDescriptions)
+      console.log(orderSizes)
+      console.log(orderPrices)
+
+      for (i = 0; i < orderPrices.length; i++) {
+
+orderPrices[i] = orderPrices[i].substr(1);
+
+orderPrices[i] = parseFloat(orderPrices[i]).toFixed(2);
+
+orderPrices[i] = orderPrices[i].toString();
+
+orderPrices[i] = "$" + orderPrices[i];
+
+      var tbody = d3.select("tbody");
+
+
+
+for ( i = 0; i < checkNumItems; i++){
+
+
+  var row = tbody.append("tr");
+
+  var cellOne = row.append("td");
+  cellOne.text(orderDescriptions[i]);
+  cellOne.style.textAlign = "left"
+
+  var cellTwo = row.append("td");
+  cellTwo.text(orderSizes[i]);
+  cellTwo.style.textAlign = "left"
+
+  var cellThree = row.append("td");
+  cellThree.text(orderPrices[i]);
+  cellThree.style.textAlign = "left"
+
+}
+
+  var tbody = d3.select("tbody");
+
+
+
+  var row = tbody.append("tr");
+  var cellOne = row.append("td");
+  cellOne.text("");
+  cellOne.style.textAlign = "left"
+
+  var cellTwo = row.append("td");
+  cellTwo.text("Total");
+  cellTwo.style.textAlign = "left"
+
+  var cellThree = row.append("td");
+  cellThree.text("$" + checkPrice);
+  cellThree.style.textAlign = "left"
+
+
+
+
+
+
+     /// localStorage.removeItem( 'checkoutPrice' ); // Clear the localStorage
+    //  localStorage.removeItem( 'checkoutNumPurchases' ); // Clear the localStorage
+    //  localStorage.removeItem( 'checkoutString' ); // Clear the localStorage
+    //  localStorage.removeItem( 'checkoutTax');
+      var myvariable = 2;
+      document.getElementById('price').value=checkPrice;
+      document.getElementById('order').value=checkString;
+      document.getElementById('item').value=checkString;
+      
+
+      //document.getElementById('orderinstructions').append(checkString);
+     // alert(checkString)
+      </script>

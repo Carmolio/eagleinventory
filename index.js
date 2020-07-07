@@ -314,9 +314,9 @@ d3.csv("floydjune.csv").then(function(data) {
        // console.log(element.Size)
          let splitSizeArray = splitSize(element.Size)
          
-         element.sizeA = splitSizeArray[0]
-         element.sizeB = splitSizeArray[1]
-         element.sizeC = splitSizeArray[2]
+       //  element.sizeA = splitSizeArray[0]
+       //  element.sizeB = splitSizeArray[1]
+       //  element.sizeC = splitSizeArray[2]
 
     });
 
@@ -423,6 +423,8 @@ button.on("click", function() {
    // console.log("Hi, a button was clicked!");
    // console.log(d3.event.target);
     tbody.selectAll("tr").remove()
+
+    //
 
     originalData.forEach((element) => {
         var row = tbody.append("tr");

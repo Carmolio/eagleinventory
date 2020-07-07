@@ -186,9 +186,34 @@ function sendMail() {
           orderString = orderString + checkStringArray[1 + i*9] + "," 
         }
 
+
+
+
+
+
         console.log(orderDescriptions)
         console.log(orderSizes)
         console.log(orderPrices)
+
+        for (i = 0; i < orderPrices.length; i++) {
+
+          orderPrices[i] = orderPrices[i].substr(1);
+      
+        orderPrices[i] = parseFloat(orderPrices[i]).toFixed(2);
+       
+        orderPrices[i] = orderPrices[i].toString();
+        
+        orderPrices[i] = "$" + orderPrices[i];
+        
+  
+}
+
+
+
+       
+
+
+
 
         var tbody = d3.select("tbody");
 
