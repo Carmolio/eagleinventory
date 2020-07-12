@@ -379,7 +379,16 @@ d3.csv("floydjune.csv").then(function(data) {
                 // run the updateChart function with this selected option
             //    console.log(selectedOption)
                 updateSizeC(selectedOption)
-                })    
+                }) 
+     
+    var button5 = d3.select("#contact");
+
+    button5.on("click", function() {
+
+        window.open("./contact.html");
+
+
+    })
 
     var button = d3.select("#reset");
 
