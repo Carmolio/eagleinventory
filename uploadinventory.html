@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>
+Use this form to upload a csv file of inventory
+</p>
+<p>
+Form expects a .csv file called "currentinventory.csv"
+</p>
+<p>Please save this file first. Click on blue link below to download. Rename it and backup before uploading latest inventory</p>
+<a href="http://eaglesalestires.com/inventory/currentinventory.csv">Current Inventory</a>
+<p>Upload here:
+</p>
+<form action="uploadinventory.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload file" name="submit">
+</form>
+
+</body>
+</html>
